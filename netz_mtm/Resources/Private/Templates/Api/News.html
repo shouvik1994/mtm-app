@@ -1,0 +1,43 @@
+<html xmlns:f="https://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+  <f:layout name="Default" />
+
+  This Template is responsible for creating a table of domain objects.
+
+  If you modify this template, do not forget to change the overwrite settings
+  in /Configuration/ExtensionBuilder/settings.yaml:
+    Resources:
+    Private:
+      Templates:
+      List.html: keep
+
+  Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+  <f:section name="content">
+        <f:for each="{news}" key="key" as="new">
+            
+            <!-- col -->
+            <div class="col-md-12 my-col two-col">
+                <a href="/news/details/" class="news-link" id="news-{new.uid}" data-url="<f:uri.page pageUid="{settings.news_detail_page}"
+        additionalParams="{tx_news_pi1:{controller:'News',action:'detail',news:new.uid}}" absolute="1" noCacheHash="1"/>">
+                    <div class="main-wrap clearfix">
+
+                        <div class="featured-img">
+
+                            <div class="img-holder"><img src="{new.image}" height="404" width="630"></div>
+                        </div>
+
+                        <div class="news-date"><span><f:format.date format="d.m.Y">{new.datetime}</f:format.date></span></div>
+
+                        <div class="news-title">
+                        {new.title}
+                        </div>
+
+                    </div>
+                </a>
+            </div>
+            <!-- col -->
+        </f:for> 
+                  
+
+   </f:section>
+</html>
